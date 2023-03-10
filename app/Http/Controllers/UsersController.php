@@ -17,8 +17,9 @@ class UsersController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('role:admin');
+            //uncomment after first admin entry
+        // $this->middleware('auth');
+        // $this->middleware('role:admin');
         $this->data = [
             'columns' => ['NAME', 'EMAIL', 'PHONE NO.', 'ROLE', 'ACTION'],
             'search' => '/users/search',
@@ -29,8 +30,7 @@ class UsersController extends Controller
     
     public function index()
     {
-        //iskljuciti rezultat sa id "1" jer je defaultna vrednost
-        $users = User::where('id', '>', 1)->orderBy('role', 'asc')->paginate(20);
+        $users = User::orderBy('role', 'asc')->paginate(20);
 
         $this->data['users'] = $users;
         return view('users.index')->with('data', $this->data);
