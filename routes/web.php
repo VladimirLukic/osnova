@@ -13,13 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
+/*| Nacini pisanja ruta
+
+Route::view('/home', 'home');
+Route::get('/home', [HomeController::class, 'home']);
+Route::get('/home', function () {
+    return view('home');
 });
+*/
 
 Auth::routes();
-
 Auth::routes(['register' => false]); //iskljucio sam rutu ka registraciji
 
+Route::view('/', 'dashboard');
 Route::get('/home', 'HomeController@index')->name('home');
 
