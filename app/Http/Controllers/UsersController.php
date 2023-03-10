@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Patients;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -204,9 +203,6 @@ class UsersController extends Controller
     {
         if(!User::whereId($id)) 
         return redirect('/users')->with('error', 'There is no such user!');
-
-        //"1" is a default value for unassigned resource
-        Patients::where('doctor_id', $id)->update(['doctor_id' => 1]);
 
         User::whereId($id)->delete();
         return redirect('/users')->with('success', 'User deleted');
