@@ -27,4 +27,5 @@ Auth::routes(['register' => false]); //iskljucio sam rutu ka registraciji
 
 Route::view('/', 'dashboard');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('users', UsersController::class);
 
